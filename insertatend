@@ -1,0 +1,47 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+struct Node* insert_at_end(struct Node* head, int data){
+    struct Node* newnode=(struct Node*)malloc(sizeof(struct Node));
+    newnode->data=data;
+    newnode->next=NULL;
+    if(head==NULL){
+    return newnode;
+    }
+    struct Node* temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next=newnode;
+    return head;
+}
+
+void printlist(struct Node* head){
+    struct Node* temp=head;
+    while(temp!=NULL){
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL");
+}
+
+
+int main() {
+   struct Node* head=NULL;
+   printf("Enter values until -1\n");
+   while(1){
+       int data;
+       scanf("%d",&data);
+       if(data==-1){
+           break;
+       }
+       head=insert_at_end(head,data);
+   }
+   printlist(head);
+}
